@@ -4,9 +4,7 @@ import { Theme } from "../constants/Theme"
 
 const THEME_KEY = "theme-mode"
 
-const ThemeSwitcherContext = createContext()
-
-export const useTheme = () => useContext(ThemeSwitcherContext)
+export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
     const [isDark, setIsDark] = useState(false)
@@ -30,7 +28,8 @@ export const ThemeProvider = ({ children }) => {
     useEffect(() => {
         const className = isDark ? "dark" : "light"
 
-        document.body.style.backgroundColor = Theme.colors[className].colorBgBase
+        document.body.style.backgroundColor =
+            Theme.colors[className].colorBgBase
     }, [isDark])
 
     const toggleTheme = () => {
@@ -40,7 +39,7 @@ export const ThemeProvider = ({ children }) => {
     }
 
     return (
-        <ThemeSwitcherContext.Provider value={{ isDark, toggleTheme }}>
+        <ThemeContext.Provider value={{ isDark, toggleTheme }}>
             <ConfigProvider
                 theme={{
                     algorithm: isDark
@@ -62,6 +61,6 @@ export const ThemeProvider = ({ children }) => {
             >
                 {children}
             </ConfigProvider>
-        </ThemeSwitcherContext.Provider>
+        </ThemeContext.Provider>
     )
 }

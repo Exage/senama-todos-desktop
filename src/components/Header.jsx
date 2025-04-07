@@ -1,11 +1,11 @@
 import { Typography, Button } from "antd"
 import { BulbOutlined, MoonOutlined } from "@ant-design/icons"
-import { useTheme } from "../contexts/ThemeContext"
+import { useThemeContext } from "../hooks/useThemeContext"
 
 const { Title } = Typography
 
 export const Header = () => {
-    const { toggleTheme, isDark } = useTheme()
+    const { toggleTheme, isDark } = useThemeContext()
 
     return (
         <header className="header">
