@@ -9,9 +9,11 @@ import { todosContextActions } from "../constants/TodosContextActions"
 
 import { TodoItem } from "./TodoItem"
 
+import { Loader } from "./Loader"
+
 export const TodoList = () => {
     const { todos, dispatch } = useTodosContext()
-    const { fetchTodos } = useFetchTodos()
+    const { fetchTodos, isLoading: isFetching } = useFetchTodos()
     const { deleteTodo, isLoading: isDeleting } = useDeletTodo()
     const { putTodo, isLoading: isUpdating } = usePutTodo()
 
@@ -44,6 +46,21 @@ export const TodoList = () => {
     const handleDelete = async (todo) => {
         const response = await deleteTodo(todo._id)
         dispatch({ type: todosContextActions.delete, payload: response })
+    }
+
+    if (isFetching) {
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "210px",
+                }}
+            >
+                <Loader />
+            </div>
+        )
     }
 
     return (
