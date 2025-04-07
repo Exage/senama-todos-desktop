@@ -13,7 +13,7 @@ export const Header = () => {
             <Button
                 type="primary"
                 shape="circle"
-                icon={isDark === "light" ? <MoonOutlined /> : <BulbOutlined />}
+                icon={isDark ? <MoonOutlined /> : <BulbOutlined />}
                 onClick={toggleTheme}
             />
         </header>
